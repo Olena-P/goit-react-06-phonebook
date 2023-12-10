@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact, deleteContact, updateFilter } from "./contactsSlice";
+import {
+  addContactAsync,
+  deleteContact,
+  updateFilter,
+} from "../redux/contactsSlice";
 import ContactForm from "./ContactForm";
 import ContactList from "./ContactList";
 import Filter from "./Filter";
@@ -11,7 +15,7 @@ const App = () => {
   const filter = useSelector((state) => state.contacts.filter);
 
   const handleAddContact = (newContact) => {
-    dispatch(addContact(newContact));
+    dispatch(addContactAsync(newContact));
   };
 
   const handleDeleteContact = (contactId) => {

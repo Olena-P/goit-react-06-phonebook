@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import 'modern-normalize';
+import { createGlobalStyle } from "styled-components";
+import "modern-normalize";
 
 export const GlobalStyle = createGlobalStyle`
     body {
@@ -11,7 +11,6 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 16px;
 
         margin: 0;
-        padding: 30px 20px;
     }
 
     code {
@@ -29,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
         object-fit: cover;
     }
 
-    table {
-        font-size: 16px;
+    h1, h2, h3, h4, p{
+        margin: 0;
     }
 `;

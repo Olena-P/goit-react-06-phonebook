@@ -1,24 +1,17 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { addContact } from "./contactsSlice";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { addContactAsync } from "../redux/contactsSlice";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    const { name, number } = values;
-
-    const newContact = {
-      id: uuidv4(),
-      name,
-      number,
-    };
-
-    dispatch(addContact(newContact));
-    resetForm();
+  const handleSubmit = (values, { resetForm, setErrors }) => {
+    dispatch(addContactAsync(values))
+      .unwrap()
+      .then(() => resetForm())
+      .catch((error) => setErrors({ name: error }));
   };
 
   const validationSchema = Yup.object().shape({

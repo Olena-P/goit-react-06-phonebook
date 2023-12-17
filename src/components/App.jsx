@@ -16,11 +16,16 @@ const App = () => {
   const filter = useSelector((state) => state.contacts.filter);
 
   const handleAddContact = (newContact) => {
-    const existingContact = contacts.find(
+    const existingNameContact = contacts.find(
       (contact) => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
 
-    if (existingContact) {
+    const existingNumberContact = contacts.find(
+      (contact) => contact.number === newContact.number
+    );
+
+    if (existingNameContact || existingNumberContact) {
+      alert("Contact with the same name or number already exists!");
       return;
     }
 

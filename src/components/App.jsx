@@ -1,13 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addContactAsync,
+  addContact,
   deleteContact,
   updateFilter,
 } from "../redux/contactsSlice";
 import ContactForm from "./ContactForm";
 import ContactList from "./ContactList";
 import Filter from "./Filter";
+import { nanoid } from "nanoid";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,15 @@ const App = () => {
   const filter = useSelector((state) => state.contacts.filter);
 
   const handleAddContact = (newContact) => {
-    dispatch(addContactAsync(newContact));
+    const existingContact = contacts.find(
+      (contact) => contact.name.toLowerCase() === newContact.name.toLowerCase()
+    );
+
+    if (existingContact) {
+      return;
+    }
+
+    dispatch(addContact({ ...newContact, id: nanoid() }));
   };
 
   const handleDeleteContact = (contactId) => {

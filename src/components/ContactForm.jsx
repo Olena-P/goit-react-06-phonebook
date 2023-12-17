@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { addContactAsync } from "../redux/contactsSlice";
+import { addContact } from "../redux/contactsSlice";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm, setErrors }) => {
-    dispatch(addContactAsync(values))
+    dispatch(addContact(values))
       .unwrap()
       .then(() => resetForm())
       .catch((error) => setErrors({ name: error }));

@@ -11,23 +11,17 @@ const contactsSlice = createSlice({
   initialState,
   reducers: {
     addContact: (state, { payload }) => {
-      const existingContact = state.contacts.find(
-        contact => contact.name.toLowerCase() === payload.name.toLowerCase()
-      );
-
-      if (existingContact) {
-        return;
-      }
-
+      // Просто додаємо контакт, без перевірки
       state.contacts.push({ ...payload, id: nanoid() });
     },
     deleteContact: (state, action) => {
-      const contactIdToDelete = action.payload;
+      // Видалення контакту
       state.contacts = state.contacts.filter(
-        contact => contact.id !== contactIdToDelete
+        contact => contact.id !== action.payload
       );
     },
     updateFilter: (state, action) => {
+      // Оновлення фільтру
       state.filter = action.payload;
     },
   },

@@ -1,9 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateFilter } from "../redux/contactsSlice";
 
-const Filter = ({ filter }) => {
+const Filter = () => {
   const dispatch = useDispatch();
+  const filter = useSelector((state) => state.contacts.filter);
 
   const handleChange = (e) => {
     dispatch(updateFilter(e.target.value));
@@ -12,7 +13,7 @@ const Filter = ({ filter }) => {
   return (
     <div>
       Filter contacts by name:
-      <input type="text" name="filter" value={filter} onChange={handleChange} />
+      <input type="text" value={filter} onChange={handleChange} />
     </div>
   );
 };

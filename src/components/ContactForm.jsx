@@ -7,7 +7,6 @@ import { addContact } from "../redux/contactsSlice";
 const ContactForm = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
-
   const contacts = useSelector((state) => state.contacts.contacts);
 
   const handleSubmit = async (values, { resetForm, setErrors }) => {
